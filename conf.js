@@ -3,7 +3,6 @@
  */
 var AllureReporter = require('jasmine-allure-reporter');
 const shell = require('shelljs');
-// require('dotenv').config();
 require('dotenv').config({ path: './.env' });
 let SpecReporter = require('jasmine-spec-reporter').SpecReporter;
 let DisplayProcessor = require('jasmine-spec-reporter').DisplayProcessor;
@@ -94,7 +93,6 @@ exports.config = (function () {
     return init({
         framework: 'jasmine2',
         seleniumAddress: process.env.seleniumAddress,
-        //   directConnect: process.env.directConnect,
         specs: ['.TestCases/Login.js'],
         getPageTimeout: 10000,
         params: {},
@@ -112,18 +110,6 @@ exports.config = (function () {
 
         },
         onPrepare: function () {
-            jasmine.getEnv().addReporter(new SpecReporter({
-                customProcessors: [TimeProcessor],
-                spec: {
-                    displayFailuresSummary: true,
-                    displayFailuredSpec: true,
-                    displaySuiteNumber: true,
-                    displaySpecDuration: true
-                }
-
-            }));
-            var date = new Date();
-            var current_hour = date.getHours();
             browser.ignoreSynchronization = true;
             let cliBrowser;
             browser.getCapabilities().then((c) => {
@@ -157,8 +143,6 @@ exports.config = (function () {
                 console.log(time() + '\n' + 'Loading ' + '\x1b[32m' + 'Live' + '\x1b[0m' + ' Instance configurations!');
                 browser.params.siteurl = process.env.liveUrl;
                 EC = protractor.ExpectedConditions;
-                console.log(process.env.liveurl);
-                console.log(process.env.pushToAllure);
             } else if (browser.params.instance == null) {
                 throw "No instance parameter provided.Please provide --params.instance={@param} {@params=['stage','live','accept'] } ";
             } else if (browser.params.instance != 'accept' && browser.params.instance != 'stage' && browser.params.instance != 'live' && browser.params.instance != null) {

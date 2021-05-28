@@ -22,6 +22,11 @@ describe('Crawler', function () {
                         body: JSON.stringify(body),
                         headers: { 'Content-Type': 'application/json' },
                     })
+                    fetch(process.env.teams, {
+                        method: 'post',
+                        body: JSON.stringify(body),
+                        headers: { 'Content-Type': 'application/json' },
+                    })
                     
                 }
             })
@@ -41,6 +46,11 @@ describe('Crawler', function () {
                 var tweetText = "<!channel> NEW TWEET FROM DADDY ELON " + text 
                 var body = { "text": `${tweetText} ` };
                 fetch(process.env.slack, {
+                    method: 'post',
+                    body: JSON.stringify(body),
+                    headers: { 'Content-Type': 'application/json' },
+                })
+                fetch(process.env.teams, {
                     method: 'post',
                     body: JSON.stringify(body),
                     headers: { 'Content-Type': 'application/json' },
