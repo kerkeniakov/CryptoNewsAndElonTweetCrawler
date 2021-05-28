@@ -1,12 +1,8 @@
 /**
  * Created by Gencho on 07.07.2020 ..
  */
-var AllureReporter = require('jasmine-allure-reporter');
-const shell = require('shelljs');
 require('dotenv').config({ path: './.env' });
-let SpecReporter = require('jasmine-spec-reporter').SpecReporter;
 let DisplayProcessor = require('jasmine-spec-reporter').DisplayProcessor;
-let HtmlReporter = require('protractor-beautiful-reporter');
 
 time = function (flag) {
     var date = new Date();
